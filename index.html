@@ -3,54 +3,242 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mercadito Valparaíso</title>
+    <title>Mi Mercadito Valparaíso | Natural & Fresco</title>
     <style>
-        body { font-family: 'Segoe UI', sans-serif; background-color: #f9f9f9; margin: 0; padding: 20px; display: flex; justify-content: center; }
-        .card { background: white; width: 100%; max-width: 380px; border-radius: 15px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.1); border: 1px solid #eee; }
-        
-        /* AJUSTE DE IMAGEN ESTILO PROFESIONAL */
-        .contenedor-img { 
-            width: 100%; 
-            height: 250px; /* Altura más baja para que no se vea vacía */
-            background-color: #f0f0f0; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-        }
-        .contenedor-img img { 
-            width: 100%; 
-            height: 100%; 
-            object-fit: cover; /* Esto hace que la foto se vea bien siempre */
+        /* PALETA DE COLORES ALEGRE */
+        :root {
+            --primario: #84cc16; /* Verde Lima alegre */
+            --secundario: #fefce8; /* Crema suave fondo */
+            --acento: #f59e0b; /* Naranja miel */
+            --texto: #3f3f46;
+            --blanco: #ffffff;
         }
 
-        .info { padding: 20px; text-align: center; }
-        h1 { color: #2d5a27; font-size: 22px; margin: 0; }
-        p { color: #666; font-size: 15px; margin: 10px 0 20px; }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Lexend', 'Segoe UI', sans-serif; }
         
-        .boton-ws { 
-            display: block; 
-            background-color: #25D366; 
-            color: white; 
-            text-decoration: none; 
-            padding: 15px; 
-            border-radius: 10px; 
-            font-weight: bold; 
-            font-size: 18px; 
+        body { 
+            background-color: var(--secundario); 
+            color: var(--texto);
+            line-height: 1.6;
         }
+
+        /* NAVEGACIÓN MODERNA */
+        nav { 
+            background: var(--blanco); 
+            padding: 1rem 5%; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo { 
+            font-size: 1.5rem; 
+            font-weight: 800; 
+            color: var(--primario); 
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* HERO SECCIÓN (MÁS CLARA) */
+        header { 
+            padding: 80px 5%;
+            text-align: center;
+            background: white;
+            border-bottom-left-radius: 50px;
+            border-bottom-right-radius: 50px;
+        }
+
+        header h1 { 
+            font-size: 3rem; 
+            color: #166534; 
+            margin-bottom: 1rem;
+            line-height: 1.1;
+        }
+
+        header p { 
+            font-size: 1.2rem; 
+            color: #6b7280; 
+            max-width: 600px; 
+            margin: 0 auto 2rem; 
+        }
+
+        .btn-cta {
+            background: var(--primario);
+            color: white;
+            padding: 18px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            display: inline-block;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 10px 20px rgba(132, 204, 22, 0.3);
+        }
+
+        .btn-cta:hover { transform: scale(1.05); }
+
+        /* GRILLA DE PRODUCTOS */
+        .contenedor { max-width: 1100px; margin: 60px auto; padding: 0 20px; }
+        
+        .grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            gap: 30px; 
+        }
+
+        .card { 
+            background: var(--blanco); 
+            border-radius: 30px; 
+            overflow: hidden; 
+            transition: all 0.3s ease;
+            border: 1px solid #f0fdf4;
+        }
+
+        .card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.08); }
+
+        .img-box { 
+            aspect-ratio: 1 / 1;
+            background: #f3f4f6;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .img-box img { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; 
+        }
+
+        /* CLASE PROFESIONAL PARA MANTEQUILLA DE MANÍ */
+        .product-image-professional {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            padding: 20px;
+            background: linear-gradient(135deg, #fefce8 0%, #f3f4f6 100%);
+        }
+
+        .content { padding: 25px; }
+
+        .tag { 
+            background: #dcfce7; 
+            color: #166534; 
+            padding: 5px 15px; 
+            border-radius: 20px; 
+            font-size: 0.75rem; 
+            font-weight: 700; 
+            text-transform: uppercase;
+        }
+
+        .price { 
+            font-size: 1.5rem; 
+            font-weight: 800; 
+            color: var(--primario);
+            margin: 15px 0;
+            display: block;
+        }
+
+        .btn-wsp {
+            background: #25d366;
+            color: white;
+            padding: 12px;
+            text-align: center;
+            text-decoration: none;
+            display: block;
+            border-radius: 15px;
+            font-weight: 700;
+            transition: 0.3s;
+        }
+
+        /* FOOTER */
+        footer { 
+            background: white; 
+            margin-top: 100px; 
+            padding: 60px 5% 30px; 
+            text-align: center;
+            border-top-left-radius: 50px;
+            border-top-right-radius: 50px;
+        }
+
+        .copyright { margin-top: 40px; color: #9ca3af; font-size: 0.9rem; }
     </style>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <div class="card">
-        <div class="contenedor-img">
-            <img src="Mantequilla de mani.jpeg" alt="Mantequilla de Maní Natural">
+    <nav>
+        <a href="#" class="logo">🌿 Mi Mercadito</a>
+        <a href="https://wa.me/56956294990" class="btn-wsp" style="padding: 10px 20px;">WhatsApp</a>
+    </nav>
+
+    <header>
+        <h1>Lo más rico de Valpo <br><span style="color: var(--acento)">a tu puerta</span></h1>
+        <p>Productos 100% naturales, seleccionados con cariño para tu familia. ¡Pide hoy y recibe en casa!</p>
+        <a href="#catalogo" class="btn-cta">Ver Productos Frescos</a>
+    </header>
+
+    <main class="contenedor" id="catalogo">
+        <div class="grid">
+            
+            <div class="card">
+                <div class="img-box">
+                    <img src="Mantequilla de mani.jpeg" alt="Mantequilla de Maní - Producto Premium" class="product-image-professional">
+                </div>
+                <div class="content">
+                    <span class="tag">Favorito de la casa</span>
+                    <h2 style="margin-top:10px">Mantequilla de Maní Premium</h2>
+                    <p style="color:#6b7280; font-size: 0.9rem; margin-top:10px">100% maní molido, sin azúcar añadida. Perfecta para desayunos, smoothies y recetas saludables.</p>
+                    <span class="price">$3.500</span>
+                    <a href="https://wa.me/56956294990?text=Hola!%20Quiero%20la%20mantequilla%20de%20mani" class="btn-wsp">Añadir al pedido ➔</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="img-box">
+                    <img src="Mani mantequilla cacao y miel.jpeg" alt="Mantequilla de Maní con Cacao y Miel" class="product-image-professional">
+                </div>
+                <div class="content">
+                    <span class="tag">Delicioso</span>
+                    <h2 style="margin-top:10px">Mantequilla Maní + Cacao & Miel</h2>
+                    <p style="color:#6b7280; font-size: 0.9rem; margin-top:10px">Combinación irresistible: maní molido con cacao y miel natural. ¡Sabor premium en cada cucharada!</p>
+                    <span class="price">$4.200</span>
+                    <a href="https://wa.me/56956294990?text=Hola!%20Quiero%20la%20mantequilla%20de%20mani%20con%20cacao%20y%20miel" class="btn-wsp">Añadir al pedido ➔</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="img-box">
+                    <img src="huevos .png" alt="Bandeja de Huevos Frescos" class="product-image-professional">
+                </div>
+                <div class="content">
+                    <span class="tag">Huevos frescos</span>
+                    <h2 style="margin-top:10px">Bandeja de Huevos Frescos</h2>
+                    <p style="color:#6b7280; font-size: 0.9rem; margin-top:10px">Bandeja de 30 unidades. Huevos grandes, frescos y seleccionados para tu desayuno garantizado.</p>
+                    <span class="price">$8.000</span>
+                    <a href="https://wa.me/56956294990?text=Hola!%20Quiero%20la%20bandeja%20de%20huevos" class="btn-wsp">Añadir al pedido ➔</a>
+                </div>
+            </div>
+
         </div>
-        <div class="info">
-            <h1>Mantequilla de Maní</h1>
-            <p>100% Natural y artesanal.<br>Reparto a domicilio en Valparaíso.</p>
-            <a href="https://wa.me/569XXXXXXXX" class="boton-ws">🛒 Realizar Pedido</a>
+    </main>
+
+    <footer>
+        <div style="max-width: 600px; margin: 0 auto;">
+            <h3 style="color: var(--primario); margin-bottom: 15px;">⚓ Mi Mercadito Valparaíso</h3>
+            <p>Repartos en todos los cerros de nuestra ciudad puerto. <br> 
+               <strong>WhatsApp: +56 9 5629 4990</strong></p>
         </div>
-    </div>
+        <div class="copyright">
+            &copy; 2026 - Hecho con ❤️ para Valparaíso
+        </div>
+    </footer>
 
 </body>
 </html>
